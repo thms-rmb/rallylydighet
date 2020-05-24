@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block header %}
+    <h3>{% block title %}Rekkevisning - Rallylydighet{% endblock %}</h3>
+{% endblock %}
+
+{% block content %}
+    <div class="sequence">
+        <header>
+            <h5>Rekke {{ sequence.id }}</h5>
+            <small>Opprettet {{ sequence.created }}</small>
+        </header>
+        {% for sign in signs %}
+            <a href="{{ url_for('sequences.sequence_item', sequence_id=sequence.id, priority=sign.priority) }}">
+                <div class="sign">
+                    <img src="{{ url_for('signs.sign', sign_id=sign.id) }}" alt="Skilt {{ sign.code }}">
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}
